@@ -389,3 +389,58 @@ if run:
                 st.error(f"Error calling Databricks endpoint: {e}")
 else:
     st.info("Adjust the campaign settings above, then click **Predict purchases** to see the model’s estimate.")
+
+st.markdown("---")
+st.markdown("### ℹ️ Important notes and limitations")
+
+st.markdown(
+    """
+**1. Synthetic, single-company data**
+
+- This model was trained on a **synthetic** dataset built to simulate one fictional company's social media ad campaigns.  
+- Real companies, industries, and ad platforms may behave very differently, so predictions should be treated as **rough scenario guidance, not exact forecasts**.
+
+If you want to explore the raw synthetic data yourself, you can find it on Kaggle:
+
+- Kaggle dataset: [Social Media Advertisement Performance](https://www.kaggle.com/datasets/alperenmyung/social-media-advertisement-performance)
+
+**2. Limited features**
+
+- The model does **not** know anything about:
+  - The product being sold (category, quality, brand strength, etc.).
+  - The price of the product or profit margins.
+  - Creative quality (copy, images, video style).
+- It only sees high-level campaign settings like duration, budget, number of ads, platforms, formats, and basic targeting.
+
+**3. Correlation, not causation**
+
+- The model learns **patterns in past data**, not true cause-and-effect.
+- If it predicts higher purchases when budget or number of ads goes up, that does **not** guarantee the same lift in the real world.
+
+**4. No external factors**
+
+- The model does not account for:
+  - Seasonality or holidays
+  - Competitors’ campaigns
+  - Platform algorithm changes
+  - Broader economic conditions
+- In real marketing, these can strongly change performance.
+
+**5. Only valid for “similar” campaigns**
+
+- The model is safest to use for campaigns that look **similar** to those in the training data.
+- Very unusual setups (new platforms, extreme budgets, very long durations, etc.) may result in **unreliable predictions**.
+
+**6. Point estimate only**
+
+- The model returns a **single number** (an estimate of purchases).
+- It does **not** show uncertainty, confidence intervals, or best/worst-case ranges.
+- Actual performance can be higher or lower than the prediction.
+
+**7. Educational tool only**
+
+- This app is built for **learning and experimentation**, not for making final business decisions.
+- Any real budget decisions should also use expert judgment, A/B tests, and real performance data.
+"""
+)
+
