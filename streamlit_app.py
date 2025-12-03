@@ -175,7 +175,7 @@ div[data-baseweb="slider"] span {
 # Header
 # --------------------------------------------------------
 st.markdown(
-    "<h1 style='font-size: 2.6rem; margin-bottom: 0.4rem;'>📲 Social Media Ad Campaign Purchase Predictor</h1>",
+    "<h1 style='font-size: 2.6rem; margin-bottom: 0.4rem;'>📊 Social Media Ad Campaign Purchase Predictor</h1>",
     unsafe_allow_html=True,
 )
 st.markdown(
@@ -185,6 +185,13 @@ st.markdown(
     which predicts the expected number of purchases for the campaign.
     """
 )
+
+# Spacer between intro and core settings
+st.markdown("<div style='height: 40px;'></div>", unsafe_allow_html=True)
+# You can increase/decrease 40px as you like
+
+st.subheader("Core campaign settings")
+
 
 # --------------------------------------------------------
 # Core campaign settings (fully on main page)
