@@ -270,6 +270,8 @@ with c3:
         value=3,
         step=1,
     )
+    st.caption("Ex: travel, gaming, food, etc.")
+
 
 with c4:
     start_month_name = st.selectbox("Start Month", MONTH_NAMES, index=0)
