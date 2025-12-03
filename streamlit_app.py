@@ -309,6 +309,31 @@ with col_types:
     stories_ads = st.number_input("Stories ads", min_value=0, step=1, value=0)
     video_ads = st.number_input("Video ads", min_value=0, step=1, value=0)
 
+with col_types:
+    st.subheader("Ad-format mix")
+    st.caption("Split your creatives across formats.")
+    carousel_ads = st.number_input("Carousel ads", min_value=0, step=1, value=0)
+    image_ads    = st.number_input("Image ads",    min_value=0, step=1, value=0)
+    stories_ads  = st.number_input("Stories ads",  min_value=0, step=1, value=0)
+    video_ads    = st.number_input("Video ads",    min_value=0, step=1, value=0)
+
+    # New: total format ads vs total ads
+    format_total = carousel_ads + image_ads + stories_ads + video_ads
+    total_ads_computed = facebook_ads + instagram_ads
+
+    st.caption(
+        f"Total format-specific ads: {format_total} "
+        f"(out of {int(total_ads_computed)} total ads)"
+    )
+
+    if format_total > total_ads_computed:
+        st.warning(
+            f"You assigned {format_total} ads across formats but only "
+            f"{int(total_ads_computed)} total ads. "
+            "Please reduce one of the format counts."
+        )
+
+
 st.markdown("---")
 
 # --------------------------------------------------------
