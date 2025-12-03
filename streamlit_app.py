@@ -8,7 +8,7 @@ import os
 # Page config
 # --------------------------------------------------------
 st.set_page_config(
-    page_title="Social Media Ad Campaign Purchase Predictor",
+    page_title="📲 Social Media Ad Campaign Purchase Predictor",
     page_icon="💸",
     layout="wide",
 )
@@ -63,25 +63,52 @@ def call_databricks_endpoint(df: pd.DataFrame) -> float:
 
 
 # --------------------------------------------------------
-# Global CSS – purple→black gradient + minor polish
+# Global CSS – black background, purple inputs, purple slider, hide sidebar
 # --------------------------------------------------------
 st.markdown(
     """
     <style>
     .stApp {
-        background: linear-gradient(135deg, #3a1c71, #d76d77, #000000);
-        background-attachment: fixed;
+        background: #000000;
         color: #f5f5f5;
     }
-    [data-testid="stSidebar"] > div {
-        background: rgba(0,0,0,0.55);
-    }
-    .main > div {
+    /* Hide sidebar entirely */
+    div[data-testid="stSidebar"] { display: none !important; }
+    /* Center main content a bit */
+    main .block-container {
         max-width: 1100px;
         margin: 0 auto;
     }
+    /* Number inputs */
+    div[data-testid="stNumberInput"] > div {
+        background-color: #4b2c82 !important;
+        border-radius: 0.5rem;
+    }
+    div[data-testid="stNumberInput"] input {
+        background-color: #4b2c82 !important;
+        color: #ffffff !important;
+    }
+    /* Select boxes */
+    div[data-baseweb="select"] > div {
+        background-color: #4b2c82 !important;
+        color: #ffffff !important;
+        border-radius: 0.5rem;
+    }
+    /* General text/number input */
+    div[data-baseweb="input"] input {
+        background-color: #4b2c82 !important;
+        color: #ffffff !important;
+    }
+    /* Slider track and handle */
+    div[data-baseweb="slider"] > div {
+        background-color: #4b2c82 !important;
+    }
+    div[data-baseweb="slider"] > div > div {
+        background-color: #a46bff !important;
+    }
+    /* Metric background */
     .stMetric {
-        background-color: rgba(245, 247, 251, 0.1);
+        background-color: rgba(74, 46, 132, 0.6);
         border-radius: 0.75rem;
         padding: 0.75rem 1rem;
     }
@@ -93,7 +120,10 @@ st.markdown(
 # --------------------------------------------------------
 # Header
 # --------------------------------------------------------
-st.markdown("### 📲 Social Media Ad Campaign Purchase Predictor")
+st.markdown(
+    "<h1 style='font-size: 2.2rem; margin-bottom: 0.4rem;'>📊 Social Media Ad Campaign Purchase Predictor</h1>",
+    unsafe_allow_html=True,
+)
 st.markdown(
     """
     Configure a social media ad campaign and click **Predict purchases**.
@@ -102,24 +132,17 @@ st.markdown(
     """
 )
 
-# Sidebar is now just for timing tips (no core inputs)
-st.sidebar.header("Campaign options")
-with st.sidebar.expander("Timing", expanded=False):
-    start_month = st.selectbox("Start month (1–12)", list(range(1, 13)), index=0)
-    end_month = st.selectbox("End month (1–12)", list(range(1, 13)), index=0)
-
-st.sidebar.markdown("---")
-st.sidebar.markdown(
-    "Use the main page to set budget, duration, targeting, and platform mix. "
-    "Number of ads is automatically computed from your platform choices."
-)
-
 # --------------------------------------------------------
-# Main – core campaign settings (moved from sidebar)
+# Core campaign settings (now fully on main page)
 # --------------------------------------------------------
 st.subheader("Core campaign settings")
 
-c1, c2, c3 = st.columns(3)
+MONTH_NAMES = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+]
+
+c1, c2, c3, c4 = st.columns(4)
 
 with c1:
     duration_days = st.slider("Campaign duration (days)", 1, 365, 30)
@@ -140,6 +163,12 @@ with c3:
         value=3,
         step=1,
     )
+
+with c4:
+    start_month_name = st.selectbox("Start month", MONTH_NAMES, index=0)
+    start_month = MONTH_NAMES.index(start_month_name) + 1
+    end_month = start_month  # auto: end month = start month
+    st.caption(f"End month (auto): {MONTH_NAMES[end_month - 1]}")
 
 st.markdown("---")
 
@@ -212,7 +241,7 @@ def build_feature_row():
     if "num_ads" in row:
         row["num_ads"] = num_ads_calc
 
-    # Months
+    # Months (numeric)
     if "start_month" in row:
         row["start_month"] = start_month
     if "end_month" in row:
