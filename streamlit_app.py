@@ -72,7 +72,7 @@ st.markdown(
     <style>
     .stApp {
         background: #000000;
-        color: #f5f5f5;
+        color: #8A00C4;
     }
     /* Hide sidebar entirely */
     div[data-testid="stSidebar"] { display: none !important; }
