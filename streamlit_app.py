@@ -8,7 +8,7 @@ import os
 # Page config
 # --------------------------------------------------------
 st.set_page_config(
-    page_title="Campaign Purchase Predictor",
+    page_title="Social Media Ad Campaign Purchase Predictor",
     page_icon="💸",
     layout="wide",
 )
@@ -46,9 +46,7 @@ def call_databricks_endpoint(df: pd.DataFrame) -> float:
     """Send a one-row DataFrame to the Databricks serving endpoint."""
     token = get_databricks_token()
 
-    payload = {
-        "dataframe_split": df.to_dict(orient="split")
-    }
+    payload = {"dataframe_split": df.to_dict(orient="split")}
 
     headers = {
         "Authorization": f"Bearer {token}",
@@ -65,17 +63,25 @@ def call_databricks_endpoint(df: pd.DataFrame) -> float:
 
 
 # --------------------------------------------------------
-# Simple CSS tweak for a cleaner look
+# Global CSS – purple→black gradient + minor polish
 # --------------------------------------------------------
 st.markdown(
     """
     <style>
+    .stApp {
+        background: linear-gradient(135deg, #3a1c71, #d76d77, #000000);
+        background-attachment: fixed;
+        color: #f5f5f5;
+    }
+    [data-testid="stSidebar"] > div {
+        background: rgba(0,0,0,0.55);
+    }
     .main > div {
         max-width: 1100px;
         margin: 0 auto;
     }
     .stMetric {
-        background-color: #f5f7fb;
+        background-color: rgba(245, 247, 251, 0.1);
         border-radius: 0.75rem;
         padding: 0.75rem 1rem;
     }
@@ -87,63 +93,90 @@ st.markdown(
 # --------------------------------------------------------
 # Header
 # --------------------------------------------------------
-st.markdown("### 📊 Campaign Purchase Predictor")
+st.markdown("### 📲 Social Media Ad Campaign Purchase Predictor")
 st.markdown(
     """
-    Configure a hypothetical digital ad campaign and click **Predict purchases**.
-    The input features are sent to a Ridge regression model served on **Databricks**,
-    which returns the predicted number of purchases at the campaign level.
+    Configure a social media ad campaign and click **Predict purchases**.
+    The inputs are sent to a Ridge regression model served on **Databricks**,
+    which predicts the expected number of purchases for the campaign.
     """
 )
 
-st.sidebar.header("Campaign setup")
-
-# --------------------------------------------------------
-# Sidebar – core campaign knobs
-# --------------------------------------------------------
-with st.sidebar.expander("Campaign basics", expanded=True):
-    duration_days = st.slider("Campaign duration (days)", 1, 365, 30)
-    total_budget = st.number_input("Total budget ($)", min_value=0.0, value=1000.0, step=100.0)
-    num_ads = st.number_input("Number of ads", min_value=1, value=5, step=1)
-    num_unique_interests = st.number_input("Number of unique interests", min_value=1, value=3, step=1)
-
+# Sidebar is now just for timing tips (no core inputs)
+st.sidebar.header("Campaign options")
 with st.sidebar.expander("Timing", expanded=False):
     start_month = st.selectbox("Start month (1–12)", list(range(1, 13)), index=0)
     end_month = st.selectbox("End month (1–12)", list(range(1, 13)), index=0)
 
 st.sidebar.markdown("---")
 st.sidebar.markdown(
-    "**Tip:**\n\nTry different budget and mix of platforms/ad types to see how the expected purchases change."
+    "Use the main page to set budget, duration, targeting, and platform mix. "
+    "Number of ads is automatically computed from your platform choices."
 )
 
 # --------------------------------------------------------
-# Main layout – three sections in columns
+# Main – core campaign settings (moved from sidebar)
+# --------------------------------------------------------
+st.subheader("Core campaign settings")
+
+c1, c2, c3 = st.columns(3)
+
+with c1:
+    duration_days = st.slider("Campaign duration (days)", 1, 365, 30)
+
+with c2:
+    total_budget = st.number_input(
+        "Total budget ($)",
+        min_value=0.0,
+        value=1000.0,
+        step=100.0,
+        format="%.2f",
+    )
+
+with c3:
+    num_unique_interests = st.number_input(
+        "Number of unique interests",
+        min_value=1,
+        value=3,
+        step=1,
+    )
+
+st.markdown("---")
+
+# --------------------------------------------------------
+# Platform + format mix
 # --------------------------------------------------------
 col_platforms, col_types = st.columns(2)
 
 with col_platforms:
     st.subheader("Ad-platform mix")
-    st.caption("Number of ads running on each platform.")
+    st.caption("Number of ads on each platform. Total ads is computed automatically.")
     facebook_ads = st.number_input("Facebook ads", min_value=0, step=1, value=0)
     instagram_ads = st.number_input("Instagram ads", min_value=0, step=1, value=0)
 
+    total_ads_computed = facebook_ads + instagram_ads
+    st.markdown(f"**Total number of ads (computed):** {int(total_ads_computed)}")
+
 with col_types:
     st.subheader("Ad-format mix")
-    st.caption("How your creatives are split across formats.")
+    st.caption("Split your creatives across formats.")
     carousel_ads = st.number_input("Carousel ads", min_value=0, step=1, value=0)
-    image_ads    = st.number_input("Image ads", min_value=0, step=1, value=0)
-    stories_ads  = st.number_input("Stories ads", min_value=0, step=1, value=0)
-    video_ads    = st.number_input("Video ads", min_value=0, step=1, value=0)
+    image_ads = st.number_input("Image ads", min_value=0, step=1, value=0)
+    stories_ads = st.number_input("Stories ads", min_value=0, step=1, value=0)
+    video_ads = st.number_input("Video ads", min_value=0, step=1, value=0)
 
 st.markdown("---")
 
+# --------------------------------------------------------
+# Targeting mix
+# --------------------------------------------------------
 col_gender, col_age = st.columns(2)
 
 with col_gender:
     st.subheader("Target gender mix")
     st.caption("Number of ads aimed at each gender segment.")
-    male_ads       = st.number_input("Male-targeted ads", min_value=0, step=1, value=0)
-    female_ads     = st.number_input("Female-targeted ads", min_value=0, step=1, value=0)
+    male_ads = st.number_input("Male-targeted ads", min_value=0, step=1, value=0)
+    female_ads = st.number_input("Female-targeted ads", min_value=0, step=1, value=0)
     all_gender_ads = st.number_input("All-gender ads", min_value=0, step=1, value=0)
 
 with col_age:
@@ -152,7 +185,7 @@ with col_age:
     age_18_24_ads = st.number_input("Age 18–24 ads", min_value=0, step=1, value=0)
     age_25_34_ads = st.number_input("Age 25–34 ads", min_value=0, step=1, value=0)
     age_35_44_ads = st.number_input("Age 35–44 ads", min_value=0, step=1, value=0)
-    age_all_ads   = st.number_input("All-age ads",   min_value=0, step=1, value=0)
+    age_all_ads = st.number_input("All-age ads", min_value=0, step=1, value=0)
 
 st.markdown(
     "<small>Any feature not controlled in the UI is set to 0. "
@@ -161,7 +194,7 @@ st.markdown(
 )
 
 # --------------------------------------------------------
-# Build feature row
+# Build feature row (num_ads auto from FB + IG)
 # --------------------------------------------------------
 def build_feature_row():
     row = {c: 0 for c in FEATURE_COLS}
@@ -171,10 +204,15 @@ def build_feature_row():
         row["duration_days"] = duration_days
     if "total_budget" in row:
         row["total_budget"] = total_budget
-    if "num_ads" in row:
-        row["num_ads"] = num_ads
     if "num_unique_interests" in row:
         row["num_unique_interests"] = num_unique_interests
+
+    # Auto-computed number of ads
+    num_ads_calc = facebook_ads + instagram_ads
+    if "num_ads" in row:
+        row["num_ads"] = num_ads_calc
+
+    # Months
     if "start_month" in row:
         row["start_month"] = start_month
     if "end_month" in row:
@@ -244,5 +282,4 @@ if run:
         except Exception as e:
             st.error(f"Error calling Databricks endpoint: {e}")
 else:
-    st.info("Adjust the campaign settings, then click **Predict purchases** to see the model’s estimate.")
-
+    st.info("Adjust the campaign settings above, then click **Predict purchases** to see the model’s estimate.")
