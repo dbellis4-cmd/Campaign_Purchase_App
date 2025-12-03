@@ -142,7 +142,7 @@ div[data-baseweb="slider"] > div > div:nth-child(2) {
 
 /* Number above the handle */
 div[data-baseweb="slider"] span {
-    color: #8A00C4 !important;            /* purple value text */
+    color: #ffffff !important;            /* purple value text */
 }
 
 
