@@ -123,23 +123,28 @@ st.markdown(
         color: #ffffff !important;
     }
 
-    /* Slider rail: full bar white */
-    div[data-baseweb="slider"] > div {
-        background-color: #000000 !important;
-    }
-    /* Selected portion of slider (left side) */
-    div[data-baseweb="slider"] > div > div {
-        background-color: #8A00C4 !important;
-    }
-    /* Slider handle */
-    div[role="slider"] {
-        background-color: #8A00C4 !important;
-        border: 1px solid #ffffff !important;
-    }
-    /* Slider value text above the handle */
-    div[data-baseweb="slider"] span {
-        color: #ffffff !important;
-    }
+    /* ----- Slider: kill the orange ----- */
+
+/* Remove default colored rail */
+div[data-baseweb="slider"] > div {
+    background-color: transparent !important;
+}
+
+/* First segment (left / filled part) */
+div[data-baseweb="slider"] > div > div:nth-child(1) {
+    background-color: #8A00C4 !important;  /* purple filled bar */
+}
+
+/* Second segment (right / empty part) */
+div[data-baseweb="slider"] > div > div:nth-child(2) {
+    background-color: #FFFFFF !important;  /* white remaining bar */
+}
+
+/* Number above the handle */
+div[data-baseweb="slider"] span {
+    color: #8A00C4 !important;            /* purple value text */
+}
+
 
     /* Metric background (output card) */
     .stMetric {
