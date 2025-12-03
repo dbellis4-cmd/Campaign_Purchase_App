@@ -158,7 +158,7 @@ st.markdown(
         font-weight: 600 !important;
     }
     div.stButton > button:hover {
-        background-color: #ffffff !important;
+        background-color: #A536FF !important;
     }
     </style>
     """,
