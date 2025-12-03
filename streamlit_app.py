@@ -102,12 +102,12 @@ st.markdown(
     }
     /* +/- buttons on number inputs */
     div[data-testid="stNumberInput"] button {
-        background-color: #87CEEB !important;
+        background-color: #8A00C4 !important;
         color: #ffffff !important;
         border: none !important;
     }
     div[data-testid="stNumberInput"] button:hover {
-        background-color: #A536FF !important;
+        background-color: #ffffff !important;
     }
 
     /* Select boxes */
