@@ -107,7 +107,7 @@ st.markdown(
         border: none !important;
     }
     div[data-testid="stNumberInput"] button:hover {
-        background-color: #ffffff !important;
+        background-color: #A536FF !important;
     }
 
     /* Select boxes */
@@ -158,7 +158,7 @@ st.markdown(
         font-weight: 600 !important;
     }
     div.stButton > button:hover {
-        background-color: #A536FF !important;
+        background-color: #ffffff !important;
     }
     </style>
     """,
