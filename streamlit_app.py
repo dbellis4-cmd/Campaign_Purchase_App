@@ -9,7 +9,7 @@ import os
 # --------------------------------------------------------
 st.set_page_config(
     page_title="Campaign Purchase Predictor",
-    page_icon="📈",
+    page_icon="💸",
     layout="wide",
 )
 
