@@ -108,7 +108,7 @@ st.markdown(
 
     /* Slider rail: full bar white */
     div[data-baseweb="slider"] > div {
-        background-color: #ffffff !important;
+        background-color: #000000 !important;
     }
     /* Selected portion of slider (left side) */
     div[data-baseweb="slider"] > div > div {
