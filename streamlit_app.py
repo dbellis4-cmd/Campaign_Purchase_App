@@ -419,6 +419,7 @@ else:
 st.markdown("<div style='height: 60px;'></div>", unsafe_allow_html=True)  # tweak 60px as you like
 
 st.markdown("---")
+st.markdown("<div style='height: 60px;'></div>", unsafe_allow_html=True)  # tweak 60px as you like
 st.markdown("### 📌 Important Notes & Limitations")
 
 st.markdown(
