@@ -261,7 +261,7 @@ c1, c2, c3, c4 = st.columns(4)
 with c1:
     duration_days = st.number_input(
         "Campaign duration (days)",
-        min_value=1,
+        min_value=30,
         max_value=365,
         value=30,
         step=1,
