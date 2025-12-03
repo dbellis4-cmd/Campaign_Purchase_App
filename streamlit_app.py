@@ -190,7 +190,7 @@ st.markdown(
 st.markdown("<div style='height: 40px;'></div>", unsafe_allow_html=True)
 # You can increase/decrease 40px as you like
 
-st.subheader("Core campaign settings")
+
 
 
 # --------------------------------------------------------
