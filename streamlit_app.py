@@ -415,6 +415,9 @@ if run:
 else:
     st.info("Adjust the campaign settings above, then click **Predict purchases** to see the model’s estimate.")
 
+# Spacer between Predict section and Notes
+st.markdown("<div style='height: 60px;'></div>", unsafe_allow_html=True)  # tweak 60px as you like
+
 st.markdown("---")
 st.markdown("### 📌 Important Notes & Limitations")
 
