@@ -232,7 +232,7 @@ This app uses a regression model trained on a synthetic social media advertising
 1. Set your campaign basics (duration, budget, and number of unique interests).  
 2. Choose how many ads you will run on each platform (Facebook and Instagram).  
 3. Distribute those ads across formats (carousel, image, stories, video) and audience segments (gender and age groups).  
-4. Click **Predict purchases** to see the model’s estimated number of purchases for that setup.
+4. Click **Predict Purchases** to see the model’s estimated number of purchases for that setup.
 
 Predictions are based only on these campaign settings and do not include product details, prices, or real-world factors like competitors or seasonality, so results should be interpreted as approximate and educational.
     """
