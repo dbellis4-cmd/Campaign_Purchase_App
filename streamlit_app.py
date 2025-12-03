@@ -72,8 +72,8 @@ st.markdown(
     <style>
     /* ----- Global theme overrides (kills the orange/red) ----- */
     :root {
-        --primary-color: #8A00C4;
-        --primary-color-hover: #A536FF;
+        --primary-color: #000000;
+        --primary-color-hover: #8A00C4;
         --secondary-background-color: #8A00C4;
     }
 
@@ -125,7 +125,7 @@ st.markdown(
 
     /* Slider rail: full bar white */
     div[data-baseweb="slider"] > div {
-        background-color: #ffffff !important;
+        background-color: #000000 !important;
     }
     /* Selected portion of slider (left side) */
     div[data-baseweb="slider"] > div > div {
