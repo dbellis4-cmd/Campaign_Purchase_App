@@ -153,6 +153,28 @@ div[data-baseweb="slider"] span {
         padding: 0.75rem 1rem;
     }
 
+   
+    <style>
+    /* ... your existing styles ... */
+
+    /* Customize info / alert boxes (st.info, st.warning, st.error) */
+    div[data-testid="stAlert"] {
+        background-color: #120024 !important;  /* dark purple background */
+        border-radius: 0.75rem !important;
+        border: 1px solid #8A00C4 !important;  /* neon purple border */
+        color: #ffffff !important;
+    }
+
+    /* Make the text inside slightly brighter */
+    div[data-testid="stAlert"] p {
+        color: #ffffff !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+
 
     /* Primary button: purple pill */
     div.stButton > button {
@@ -358,7 +380,7 @@ def build_feature_row():
 # --------------------------------------------------------
 # Predict button + output
 # --------------------------------------------------------
-st.markdown("### 🔮 Run prediction")
+st.markdown("### 🔮 Run Prediction")
 
 left, right = st.columns([1, 2])
 
