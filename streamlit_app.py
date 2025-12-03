@@ -8,7 +8,7 @@ import os
 # Page config
 # --------------------------------------------------------
 st.set_page_config(
-    page_title="📲 Social Media Ad Campaign Purchase Predictor",
+    page_title=" 📲 Social Media Ad Campaign Purchase Predictor ",
     page_icon="💸",
     layout="wide",
 )
