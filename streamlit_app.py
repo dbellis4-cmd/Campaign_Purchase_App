@@ -207,11 +207,11 @@ MONTH_NAMES = [
 c1, c2, c3, c4 = st.columns(4)
 
 with c1:
-    duration_days = st.slider("Campaign duration (days)", 1, 365, 30)
+    duration_days = st.slider("Campaign Duration (Days)", 1, 365, 30)
 
 with c2:
     total_budget = st.number_input(
-        "Total budget ($)",
+        "Total Budget ($)",
         min_value=0.0,
         value=1000.0,
         step=100.0,
@@ -220,14 +220,14 @@ with c2:
 
 with c3:
     num_unique_interests = st.number_input(
-        "Number of unique interests",
+        "Number of Unique Interests",
         min_value=1,
         value=3,
         step=1,
     )
 
 with c4:
-    start_month_name = st.selectbox("Start month", MONTH_NAMES, index=0)
+    start_month_name = st.selectbox("Start Month", MONTH_NAMES, index=0)
     start_month = MONTH_NAMES.index(start_month_name) + 1
 
     # Compute end month from duration (assume year 2024, starting on day 1)
@@ -236,7 +236,7 @@ with c4:
     end_month = end_date.month
     end_month_name = MONTH_NAMES[end_month - 1]
 
-    st.caption(f"End month (auto from duration): {end_month_name}")
+    st.caption(f"End Month (auto from duration): {end_month_name}")
 
 st.markdown("---")
 
@@ -248,11 +248,11 @@ col_platforms, col_types = st.columns(2)
 with col_platforms:
     st.subheader("Ad-platform mix")
     st.caption("Number of ads on each platform. Total ads is computed automatically.")
-    facebook_ads = st.number_input("Facebook ads", min_value=0, step=1, value=0)
-    instagram_ads = st.number_input("Instagram ads", min_value=0, step=1, value=0)
+    facebook_ads = st.number_input("Facebook Ads", min_value=0, step=1, value=0)
+    instagram_ads = st.number_input("Instagram Ads", min_value=0, step=1, value=0)
 
     total_ads_computed = facebook_ads + instagram_ads
-    st.markdown(f"**Total number of ads (computed):** {int(total_ads_computed)}")
+    st.markdown(f"**Total Number of Ads (computed):** {int(total_ads_computed)}")
 
 with col_types:
     st.subheader("Ad-format mix")
@@ -270,14 +270,14 @@ st.markdown("---")
 col_gender, col_age = st.columns(2)
 
 with col_gender:
-    st.subheader("Target gender mix")
+    st.subheader("Target Gender Mix")
     st.caption("Number of ads aimed at each gender segment.")
     male_ads = st.number_input("Male-targeted ads", min_value=0, step=1, value=0)
     female_ads = st.number_input("Female-targeted ads", min_value=0, step=1, value=0)
     all_gender_ads = st.number_input("All-gender ads", min_value=0, step=1, value=0)
 
 with col_age:
-    st.subheader("Target age-group mix")
+    st.subheader("Target Age-Group Mix")
     st.caption("Number of ads aimed at each age band.")
     age_18_24_ads = st.number_input("Age 18–24 ads", min_value=0, step=1, value=0)
     age_25_34_ads = st.number_input("Age 25–34 ads", min_value=0, step=1, value=0)
@@ -363,7 +363,7 @@ st.markdown("### 🔮 Run prediction")
 left, right = st.columns([1, 2])
 
 with left:
-    run = st.button("Predict purchases", type="primary")
+    run = st.button("Predict Purchases", type="primary")
 
 if run:
     # Short-circuit: if there are 0 total ads, do NOT call the model
@@ -372,7 +372,7 @@ if run:
     if total_ads == 0:
         with left:
             # show whole number 0
-            st.metric("Estimated purchases", "0")
+            st.metric("Estimated Purchases", "0")
         with right:
             st.info(
                 "Total number of ads is **0**, so the model was not called. "
@@ -387,7 +387,7 @@ if run:
 
                 with left:
                     # display as whole number (no decimals)
-                    st.metric("Estimated purchases", f"{pred_rounded}")
+                    st.metric("Estimated Purchases", f"{pred_rounded}")
 
                 with right:
                     st.markdown("##### Features sent to the model")
