@@ -72,7 +72,7 @@ st.markdown(
     <style>
     /* ----- Global theme overrides (kills the orange/red) ----- */
     :root {
-        --primary-color: #000000;
+        --primary-color: #8A00C4;
         --primary-color-hover: #8A00C4;
         --secondary-background-color: #000000;
     }
@@ -102,7 +102,7 @@ st.markdown(
     }
     /* +/- buttons on number inputs */
     div[data-testid="stNumberInput"] button {
-        background-color: #8A00C4 !important;
+        background-color: #ea3473 !important;
         color: #ffffff !important;
         border: none !important;
     }
