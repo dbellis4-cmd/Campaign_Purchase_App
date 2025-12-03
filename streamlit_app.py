@@ -223,14 +223,21 @@ st.markdown(
     "<h1 class='main-title'>📊 Meta Ad Campaign Purchase Predictor</h1>",
     unsafe_allow_html=True,
 )
+
 st.markdown(
     """
-    Configure a social media ad campaign and click **Predict purchases**.
-    The inputs are sent to a Ridge regression model served on **Databricks**,
-    which predicts the expected number of purchases for the campaign. Please read **Important Notes &
-    Limitations** at the bottom.
+This app uses a regression model trained on a synthetic social media advertising dataset to estimate how many purchases a campaign might generate. It is meant for learning and scenario testing, **not** for real business forecasting.
+
+**How to use the app:**
+1. Set your campaign basics (duration, budget, and number of unique interests).  
+2. Choose how many ads you will run on each platform (Facebook and Instagram).  
+3. Distribute those ads across formats (carousel, image, stories, video) and audience segments (gender and age groups).  
+4. Click **Predict purchases** to see the model’s estimated number of purchases for that setup.
+
+Predictions are based only on these campaign settings and do not include product details, prices, or real-world factors like competitors or seasonality, so results should be interpreted as approximate and educational.
     """
 )
+
 
 # Spacer between intro and core settings
 st.markdown("<div style='height: 40px;'></div>", unsafe_allow_html=True)
