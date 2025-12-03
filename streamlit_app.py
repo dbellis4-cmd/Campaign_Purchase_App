@@ -154,7 +154,6 @@ div[data-baseweb="slider"] span {
     }
 
    
-    <style>
     /* ... your existing styles ... */
 
     /* Customize info / alert boxes (st.info, st.warning, st.error) */
@@ -169,11 +168,7 @@ div[data-baseweb="slider"] span {
     div[data-testid="stAlert"] p {
         color: #ffffff !important;
     }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
+    
 
 
     /* Primary button: purple pill */
