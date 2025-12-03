@@ -197,7 +197,7 @@ st.markdown("<div style='height: 40px;'></div>", unsafe_allow_html=True)
 # --------------------------------------------------------
 # Core campaign settings (fully on main page)
 # --------------------------------------------------------
-st.subheader("Core campaign settings")
+st.subheader("Core Campaign Settings")
 
 MONTH_NAMES = [
     "January", "February", "March", "April", "May", "June",
@@ -246,7 +246,7 @@ st.markdown("---")
 col_platforms, col_types = st.columns(2)
 
 with col_platforms:
-    st.subheader("Ad-platform mix")
+    st.subheader("Ad-Platform Mix")
     st.caption("Number of ads on each platform. Total ads is computed automatically.")
     facebook_ads = st.number_input("Facebook Ads", min_value=0, step=1, value=0)
     instagram_ads = st.number_input("Instagram Ads", min_value=0, step=1, value=0)
@@ -255,7 +255,7 @@ with col_platforms:
     st.markdown(f"**Total Number of Ads (computed):** {int(total_ads_computed)}")
 
 with col_types:
-    st.subheader("Ad-format mix")
+    st.subheader("Ad-Format Mix")
     st.caption("Split your creatives across formats.")
     carousel_ads = st.number_input("Carousel ads", min_value=0, step=1, value=0)
     image_ads = st.number_input("Image ads", min_value=0, step=1, value=0)
