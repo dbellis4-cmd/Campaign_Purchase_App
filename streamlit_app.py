@@ -482,7 +482,7 @@ if run:
             except Exception as e:
                 st.error(f"Error calling Databricks endpoint: {e}")
 else:
-    st.info("Adjust the campaign settings above, then click **Predict purchases** to see the model’s estimate.")
+    st.info("Adjust the campaign settings above, then click **Predict Purchases** to see the model’s estimate.")
 
 # Spacer between Predict section and Notes
 st.markdown("<div class='notes-spacer'></div>", unsafe_allow_html=True)
