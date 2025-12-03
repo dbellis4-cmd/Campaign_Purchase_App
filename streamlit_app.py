@@ -182,7 +182,8 @@ st.markdown(
     """
     Configure a social media ad campaign and click **Predict purchases**.
     The inputs are sent to a Ridge regression model served on **Databricks**,
-    which predicts the expected number of purchases for the campaign.
+    which predicts the expected number of purchases for the campaign. Please read **Important Notes &
+    Limitations** ath the bottom.
     """
 )
 
