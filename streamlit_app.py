@@ -102,7 +102,7 @@ st.markdown(
     }
     /* +/- buttons on number inputs */
     div[data-testid="stNumberInput"] button {
-        background-color: #ea3473 !important;
+        background-color: #87CEEB !important;
         color: #ffffff !important;
         border: none !important;
     }
@@ -138,7 +138,7 @@ st.markdown(
     }
     /* Slider value text above the handle */
     div[data-baseweb="slider"] span {
-        color: #8A00C4 !important;
+        color: #ffffff !important;
     }
 
     /* Metric background (output card) */
