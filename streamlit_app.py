@@ -74,7 +74,7 @@ st.markdown(
     :root {
         --primary-color: #000000;
         --primary-color-hover: #8A00C4;
-        --secondary-background-color: #8A00C4;
+        --secondary-background-color: #000000;
     }
 
     .stApp {
