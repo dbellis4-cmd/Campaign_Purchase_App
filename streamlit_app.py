@@ -183,7 +183,7 @@ st.markdown(
     Configure a social media ad campaign and click **Predict purchases**.
     The inputs are sent to a Ridge regression model served on **Databricks**,
     which predicts the expected number of purchases for the campaign. Please read **Important Notes &
-    Limitations** ath the bottom.
+    Limitations** at the bottom.
     """
 )
 
@@ -399,7 +399,7 @@ else:
     st.info("Adjust the campaign settings above, then click **Predict purchases** to see the model’s estimate.")
 
 st.markdown("---")
-st.markdown("### ℹ️ Important notes and limitations")
+st.markdown("### 📌 Important Notes & Limitations")
 
 st.markdown(
     """
