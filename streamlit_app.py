@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 # Page config
 # --------------------------------------------------------
 st.set_page_config(
-    page_title="Social Media Ad Campaign Purchase Predictor",
+    page_title="Meta Ad Campaign Purchase Predictor",
     page_icon="💸",
     layout="wide",
 )
@@ -220,7 +220,7 @@ div[data-baseweb="slider"] span {
 # Header
 # --------------------------------------------------------
 st.markdown(
-    "<h1 class='main-title'>📊 Social Media Ad Campaign Purchase Predictor</h1>",
+    "<h1 class='main-title'>📊 Meta Ad Campaign Purchase Predictor</h1>",
     unsafe_allow_html=True,
 )
 st.markdown(
