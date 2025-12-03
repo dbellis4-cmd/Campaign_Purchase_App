@@ -64,8 +64,8 @@ def call_databricks_endpoint(df: pd.DataFrame) -> float:
 
 
 # --------------------------------------------------------
-# Global CSS – black background, neon-purple inputs, neon-purple slider,
-# hide sidebar, hot-pink button
+# Global CSS – black background, neon-purple inputs, slider colors,
+# hide sidebar, purple button + output card
 # --------------------------------------------------------
 st.markdown(
     """
@@ -106,11 +106,11 @@ st.markdown(
         color: #ffffff !important;
     }
 
-    /* Slider: make outer track area transparent */
+    /* Slider rail: full bar white */
     div[data-baseweb="slider"] > div {
-        background-color: transparent !important;
+        background-color: #ffffff !important;
     }
-    /* Active bar inside slider */
+    /* Selected portion of slider (left side) */
     div[data-baseweb="slider"] > div > div {
         background-color: #8A00C4 !important;
     }
@@ -120,16 +120,16 @@ st.markdown(
         border: 1px solid #ffffff !important;
     }
 
-    /* Metric background */
+    /* Metric background (output card) */
     .stMetric {
-        background-color: rgba(138, 0, 196, 0.4);
+        background-color: #8A00C4 !important;
         border-radius: 0.75rem;
         padding: 0.75rem 1rem;
     }
 
-    /* Hot-pink primary button */
+    /* Primary button: purple pill */
     div.stButton > button {
-        background-color: #FF1493 !important;
+        background-color: #8A00C4 !important;
         color: #ffffff !important;
         border-radius: 999px !important;
         border: none !important;
@@ -325,20 +325,31 @@ with left:
     run = st.button("Predict purchases", type="primary")
 
 if run:
-    X_new = build_feature_row()
+    # Short-circuit: if there are 0 total ads, do NOT call the model
+    total_ads = facebook_ads + instagram_ads
 
-    with st.spinner("Calling Databricks model endpoint..."):
-        try:
-            pred = call_databricks_endpoint(X_new)
+    if total_ads == 0:
+        with left:
+            st.metric("Estimated purchases", "0.0")
+        with right:
+            st.info(
+                "Total number of ads is **0**, so the model was not called. "
+                "Increase the number of Facebook or Instagram ads to get a prediction."
+            )
+    else:
+        X_new = build_feature_row()
+        with st.spinner("Calling Databricks model endpoint..."):
+            try:
+                pred = call_databricks_endpoint(X_new)
 
-            with left:
-                st.metric("Estimated purchases", f"{pred:.1f}")
+                with left:
+                    st.metric("Estimated purchases", f"{pred:.1f}")
 
-            with right:
-                st.markdown("##### Features sent to the model")
-                st.dataframe(X_new, use_container_width=True)
+                with right:
+                    st.markdown("##### Features sent to the model")
+                    st.dataframe(X_new, use_container_width=True)
 
-        except Exception as e:
-            st.error(f"Error calling Databricks endpoint: {e}")
+            except Exception as e:
+                st.error(f"Error calling Databricks endpoint: {e}")
 else:
     st.info("Adjust the campaign settings above, then click **Predict purchases** to see the model’s estimate.")
