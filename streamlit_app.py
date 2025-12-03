@@ -3,12 +3,13 @@ import pandas as pd
 import numpy as np
 import requests
 import os
+from datetime import datetime, timedelta
 
 # --------------------------------------------------------
 # Page config
 # --------------------------------------------------------
 st.set_page_config(
-    page_title=" 📲 Social Media Ad Campaign Purchase Predictor ",
+    page_title="Social Media Ad Campaign Purchase Predictor",
     page_icon="💸",
     layout="wide",
 )
@@ -63,7 +64,8 @@ def call_databricks_endpoint(df: pd.DataFrame) -> float:
 
 
 # --------------------------------------------------------
-# Global CSS – black background, purple inputs, purple slider, hide sidebar
+# Global CSS – black background, neon-purple inputs, neon-purple slider,
+# hide sidebar, hot-pink button
 # --------------------------------------------------------
 st.markdown(
     """
@@ -74,43 +76,65 @@ st.markdown(
     }
     /* Hide sidebar entirely */
     div[data-testid="stSidebar"] { display: none !important; }
-    /* Center main content a bit */
+
+    /* Center main content */
     main .block-container {
         max-width: 1100px;
         margin: 0 auto;
     }
-    /* Number inputs */
+
+    /* Number inputs container */
     div[data-testid="stNumberInput"] > div {
-        background-color: #4b2c82 !important;
+        background-color: #8A00C4 !important;
         border-radius: 0.5rem;
     }
     div[data-testid="stNumberInput"] input {
-        background-color: #4b2c82 !important;
+        background-color: #8A00C4 !important;
         color: #ffffff !important;
     }
+
     /* Select boxes */
     div[data-baseweb="select"] > div {
-        background-color: #4b2c82 !important;
+        background-color: #8A00C4 !important;
         color: #ffffff !important;
         border-radius: 0.5rem;
     }
-    /* General text/number input */
+
+    /* Generic text inputs (if any) */
     div[data-baseweb="input"] input {
-        background-color: #4b2c82 !important;
+        background-color: #8A00C4 !important;
         color: #ffffff !important;
     }
-    /* Slider track and handle */
+
+    /* Slider: make outer track area transparent */
     div[data-baseweb="slider"] > div {
-        background-color: #4b2c82 !important;
+        background-color: transparent !important;
     }
+    /* Active bar inside slider */
     div[data-baseweb="slider"] > div > div {
-        background-color: #a46bff !important;
+        background-color: #8A00C4 !important;
     }
+    /* Slider handle */
+    div[role="slider"] {
+        background-color: #8A00C4 !important;
+        border: 1px solid #ffffff !important;
+    }
+
     /* Metric background */
     .stMetric {
-        background-color: rgba(74, 46, 132, 0.6);
+        background-color: rgba(138, 0, 196, 0.4);
         border-radius: 0.75rem;
         padding: 0.75rem 1rem;
+    }
+
+    /* Hot-pink primary button */
+    div.stButton > button {
+        background-color: #FF1493 !important;
+        color: #ffffff !important;
+        border-radius: 999px !important;
+        border: none !important;
+        padding: 0.5rem 1.5rem !important;
+        font-weight: 600 !important;
     }
     </style>
     """,
@@ -121,7 +145,7 @@ st.markdown(
 # Header
 # --------------------------------------------------------
 st.markdown(
-    "<h1 style='font-size: 2.2rem; margin-bottom: 0.4rem;'>📊 Social Media Ad Campaign Purchase Predictor</h1>",
+    "<h1 style='font-size: 2.6rem; margin-bottom: 0.4rem;'>📊 Social Media Ad Campaign Purchase Predictor</h1>",
     unsafe_allow_html=True,
 )
 st.markdown(
@@ -133,7 +157,7 @@ st.markdown(
 )
 
 # --------------------------------------------------------
-# Core campaign settings (now fully on main page)
+# Core campaign settings (fully on main page)
 # --------------------------------------------------------
 st.subheader("Core campaign settings")
 
@@ -167,8 +191,14 @@ with c3:
 with c4:
     start_month_name = st.selectbox("Start month", MONTH_NAMES, index=0)
     start_month = MONTH_NAMES.index(start_month_name) + 1
-    end_month = start_month  # auto: end month = start month
-    st.caption(f"End month (auto): {MONTH_NAMES[end_month - 1]}")
+
+    # Compute end month from duration (assume year 2024, starting on day 1)
+    start_date = datetime(2024, start_month, 1)
+    end_date = start_date + timedelta(days=duration_days)
+    end_month = end_date.month
+    end_month_name = MONTH_NAMES[end_month - 1]
+
+    st.caption(f"End month (auto from duration): {end_month_name}")
 
 st.markdown("---")
 
