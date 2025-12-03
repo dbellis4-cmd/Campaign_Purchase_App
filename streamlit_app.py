@@ -145,7 +145,7 @@ st.markdown(
 # Header
 # --------------------------------------------------------
 st.markdown(
-    "<h1 style='font-size: 2.6rem; margin-bottom: 0.4rem;'>📊 Social Media Ad Campaign Purchase Predictor</h1>",
+    "<h1 style='font-size: 2.6rem; margin-bottom: 0.4rem;'>📲 Social Media Ad Campaign Purchase Predictor</h1>",
     unsafe_allow_html=True,
 )
 st.markdown(
