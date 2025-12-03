@@ -317,6 +317,9 @@ def build_feature_row():
 # --------------------------------------------------------
 # Predict button + output
 # --------------------------------------------------------
+# --------------------------------------------------------
+# Predict button + output
+# --------------------------------------------------------
 st.markdown("### 🔮 Run prediction")
 
 left, right = st.columns([1, 2])
@@ -330,7 +333,8 @@ if run:
 
     if total_ads == 0:
         with left:
-            st.metric("Estimated purchases", "0.0")
+            # show whole number 0
+            st.metric("Estimated purchases", "0")
         with right:
             st.info(
                 "Total number of ads is **0**, so the model was not called. "
@@ -341,9 +345,11 @@ if run:
         with st.spinner("Calling Databricks model endpoint..."):
             try:
                 pred = call_databricks_endpoint(X_new)
+                pred_rounded = int(round(pred))  # round to nearest whole number
 
                 with left:
-                    st.metric("Estimated purchases", f"{pred:.1f}")
+                    # display as whole number (no decimals)
+                    st.metric("Estimated purchases", f"{pred_rounded}")
 
                 with right:
                     st.markdown("##### Features sent to the model")
