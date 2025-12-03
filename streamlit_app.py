@@ -148,6 +148,31 @@ st.markdown(
         padding: 0.75rem 1rem;
     }
 
+    /* Number inputs: change border when selected/focused */
+div[data-testid="stNumberInput"] > div {
+    border: 2px solid transparent;        /* default */
+}
+div[data-testid="stNumberInput"]:focus-within > div {
+    border: 2px solid #A536FF !important; /* selected border color */
+}
+
+/* Text inputs (if you use any) */
+div[data-baseweb="input"] {
+    border: 2px solid transparent;
+}
+div[data-baseweb="input"]:focus-within {
+    border: 2px solid #A536FF !important;
+}
+
+/* Select boxes (dropdowns) */
+div[data-baseweb="select"] > div {
+    border: 2px solid transparent;
+}
+div[data-baseweb="select"]:focus-within > div {
+    border: 2px solid #A536FF !important;
+}
+
+
     /* Primary button: purple pill */
     div.stButton > button {
         background-color: #8A00C4 !important;
