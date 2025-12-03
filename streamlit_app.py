@@ -323,6 +323,18 @@ with col_gender:
     female_ads = st.number_input("Female-targeted ads", min_value=0, step=1, value=0)
     all_gender_ads = st.number_input("All-gender ads", min_value=0, step=1, value=0)
 
+    gender_total = male_ads + female_ads + all_gender_ads
+    total_ads_computed = facebook_ads + instagram_ads
+
+    st.caption(f"Total gender-targeted ads: {gender_total} (out of {int(total_ads_computed)} total ads)")
+
+    if gender_total > total_ads_computed:
+        st.warning(
+            f"You assigned {gender_total} gender-targeted ads but only "
+            f"{int(total_ads_computed)} total ads. Please reduce one of the values."
+        )
+
+
 with col_age:
     st.subheader("Target Age-Group Mix")
     st.caption("Number of ads aimed at each age band.")
