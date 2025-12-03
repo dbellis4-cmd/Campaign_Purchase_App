@@ -70,10 +70,18 @@ def call_databricks_endpoint(df: pd.DataFrame) -> float:
 st.markdown(
     """
     <style>
+    /* ----- Global theme overrides (kills the orange/red) ----- */
+    :root {
+        --primary-color: #8A00C4;
+        --primary-color-hover: #A536FF;
+        --secondary-background-color: #8A00C4;
+    }
+
     .stApp {
         background: #000000;
-        color: #8A00C4;
+        color: #f5f5f5;
     }
+
     /* Hide sidebar entirely */
     div[data-testid="stSidebar"] { display: none !important; }
 
@@ -83,7 +91,7 @@ st.markdown(
         margin: 0 auto;
     }
 
-    /* Number inputs container */
+    /* Number inputs container (purple box) */
     div[data-testid="stNumberInput"] > div {
         background-color: #8A00C4 !important;
         border-radius: 0.5rem;
@@ -91,6 +99,15 @@ st.markdown(
     div[data-testid="stNumberInput"] input {
         background-color: #8A00C4 !important;
         color: #ffffff !important;
+    }
+    /* +/- buttons on number inputs */
+    div[data-testid="stNumberInput"] button {
+        background-color: #8A00C4 !important;
+        color: #ffffff !important;
+        border: none !important;
+    }
+    div[data-testid="stNumberInput"] button:hover {
+        background-color: #A536FF !important;
     }
 
     /* Select boxes */
@@ -100,7 +117,7 @@ st.markdown(
         border-radius: 0.5rem;
     }
 
-    /* Generic text inputs (if any) */
+    /* Generic text inputs */
     div[data-baseweb="input"] input {
         background-color: #8A00C4 !important;
         color: #ffffff !important;
@@ -108,7 +125,7 @@ st.markdown(
 
     /* Slider rail: full bar white */
     div[data-baseweb="slider"] > div {
-        background-color: #000000 !important;
+        background-color: #ffffff !important;
     }
     /* Selected portion of slider (left side) */
     div[data-baseweb="slider"] > div > div {
@@ -118,6 +135,10 @@ st.markdown(
     div[role="slider"] {
         background-color: #8A00C4 !important;
         border: 1px solid #ffffff !important;
+    }
+    /* Slider value text above the handle */
+    div[data-baseweb="slider"] span {
+        color: #8A00C4 !important;
     }
 
     /* Metric background (output card) */
@@ -135,6 +156,9 @@ st.markdown(
         border: none !important;
         padding: 0.5rem 1.5rem !important;
         font-weight: 600 !important;
+    }
+    div.stButton > button:hover {
+        background-color: #A536FF !important;
     }
     </style>
     """,
