@@ -512,14 +512,14 @@ st.markdown(
   This model is trained on a **synthetic dataset** for one fictional company. Real businesses and platforms may behave very differently, so predictions are **rough scenario estimates**, not exact forecasts.  
   Dataset used: https://www.kaggle.com/datasets/alperenmyung/social-media-advertisement-performance  
 
-- **Small sample + synthetic augmentation**  
-  The original data contained **only 50 campaigns**. Extra synthetic campaigns were created by slightly changing those original campaigns. This helps the model train but does **not** make the data truly representative of the real world.
+- **Small sample size**  
+  The model was trained on **only 50 campaigns**. With such a small sample, patterns can be unstable, and predictions should be interpreted cautiously.
 
 - **Limited inputs**  
-  The model only sees high-level campaign settings (duration, budget, number of ads, number of unique interests, platform mix, ad formats, and basic gender/age targeting).  
+  The model only sees high-level campaign settings (duration, total budget, number of ads, number of unique interests, platform mix, ad formats, and basic gender/age targeting).  
   It does **not** know the product, price, brand strength, creative quality, competition, or platform changes.
 
-- **Duration is a weak driver here**  
+- **Duration is a weak driver in this model**  
   In this dataset, campaign duration had **low predictive power** after controlling for other features. Changing duration alone may have **little or no impact** on predicted purchases, even though in real life duration would usually matter more.
 
 - **Correlation, not causation; no external factors**  
@@ -535,6 +535,5 @@ st.markdown(
 - **Educational tool only**  
   This app is meant for **learning and experimentation**, not for real budget decisions. Real decisions should also rely on expert judgment, tests (A/B experiments), and real performance data.
 
-"""
 )
 
