@@ -534,6 +534,6 @@ st.markdown(
 
 - **Educational tool only**  
   This app is meant for **learning and experimentation**, not for real budget decisions. Real decisions should also rely on expert judgment, tests (A/B experiments), and real performance data.
-
+""""
 )
 
