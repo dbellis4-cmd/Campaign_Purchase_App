@@ -507,52 +507,34 @@ st.markdown("### ℹ️ Important notes and limitations")
 
 st.markdown(
     """
-**1. Synthetic, single-company data**
 
-- This model was trained on a **synthetic** dataset built to simulate one fictional company's social media ad campaigns.  
-- Real companies, industries, and ad platforms may behave very differently, so predictions should be treated as **rough scenario guidance, not exact forecasts**.
+- **Synthetic, single-company data**  
+  This model is trained on a **synthetic dataset** for one fictional company. Real businesses and platforms may behave very differently, so predictions are **rough scenario estimates**, not exact forecasts.  
+  Dataset used: https://www.kaggle.com/datasets/alperenmyung/social-media-advertisement-performance  
 
-If you want to explore the raw synthetic data yourself, you can find it on Kaggle:
+- **Small sample + synthetic augmentation**  
+  The original data contained **only 50 campaigns**. Extra synthetic campaigns were created by slightly changing those original campaigns. This helps the model train but does **not** make the data truly representative of the real world.
 
-- Kaggle dataset: [Social Media Advertisement Performance](https://www.kaggle.com/datasets/alperenmyung/social-media-advertisement-performance)
+- **Limited inputs**  
+  The model only sees high-level campaign settings (duration, budget, number of ads, number of unique interests, platform mix, ad formats, and basic gender/age targeting).  
+  It does **not** know the product, price, brand strength, creative quality, competition, or platform changes.
 
-**2. Limited features**
+- **Duration is a weak driver here**  
+  In this dataset, campaign duration had **low predictive power** after controlling for other features. Changing duration alone may have **little or no impact** on predicted purchases, even though in real life duration would usually matter more.
 
-- The model does **not** know anything about:
-  - The product being sold (category, quality, brand strength, etc.).
-  - The price of the product or profit margins.
-  - Creative quality (copy, images, video style).
-- It only sees high-level campaign settings like duration, budget, number of ads, platforms, formats, and basic targeting.
+- **Correlation, not causation; no external factors**  
+  The model learns patterns in past data, not cause-and-effect. It does not account for seasonality, holidays, competitors, or the wider economy. Actual performance may be **higher or lower** than the prediction.
 
-**3. Correlation, not causation**
+- **Use for similar campaigns and comparisons**  
+  Predictions are most reasonable for campaigns similar to those in the dataset. Very unusual setups (extreme budgets, very long durations, uncommon mixes) may be unreliable.  
+  Treat the output as a **single point estimate** and mainly use it to compare “Scenario A vs Scenario B” within this synthetic world.
 
-- The model learns **patterns in past data**, not true cause-and-effect.
-- If it predicts higher purchases when budget or number of ads goes up, that does **not** guarantee the same lift in the real world.
+- **Behavior when total ads = 0**  
+  If the **total number of ads is 0**, the app returns **0 predicted purchases** and does not call the model.
 
-**4. No external factors**
+- **Educational tool only**  
+  This app is meant for **learning and experimentation**, not for real budget decisions. Real decisions should also rely on expert judgment, tests (A/B experiments), and real performance data.
 
-- The model does not account for:
-  - Seasonality or holidays
-  - Competitors’ campaigns
-  - Platform algorithm changes
-  - Broader economic conditions
-- In real marketing, these can strongly change performance.
-
-**5. Only valid for “similar” campaigns**
-
-- The model is safest to use for campaigns that look **similar** to those in the training data.
-- Very unusual setups (new platforms, extreme budgets, very long durations, etc.) may result in **unreliable predictions**.
-
-**6. Point estimate only**
-
-- The model returns a **single number** (an estimate of purchases).
-- It does **not** show uncertainty, confidence intervals, or best/worst-case ranges.
-- Actual performance can be higher or lower than the prediction.
-
-**7. Educational tool only**
-
-- This app is built for **learning and experimentation**, not for making final business decisions.
-- Any real budget decisions should also use expert judgment, A/B tests, and real performance data.
 """
 )
 
