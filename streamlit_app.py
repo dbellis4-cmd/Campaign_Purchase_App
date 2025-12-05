@@ -17,7 +17,7 @@ st.set_page_config(
 # --------------------------------------------------------
 # Databricks serving endpoint
 # --------------------------------------------------------
-ENDPOINT_URL = "https://dbc-74bcb363-c4f6.cloud.databricks.com/serving-endpoints/ridge_regression/invocations"
+ENDPOINT_URL = "https://dbc-74bcb363-c4f6.cloud.databricks.com/serving-endpoints/LINREG_kbest_20/invocations"
 
 
 # --------------------------------------------------------
