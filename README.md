@@ -73,4 +73,3 @@ campaign_purchase_app/
 │
 └── .streamlit/
     └── secrets.toml.example   # Example configuration for Databricks token and endpoint
-
