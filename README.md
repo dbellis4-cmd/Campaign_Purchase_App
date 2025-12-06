@@ -1,8 +1,7 @@
-# Social Media Ad Campaign Purchase Predictor
-A Streamlit web application that predicts the expected **number of purchases** for a
-social media ad campaign using a regression model deployed on **Databricks MLflow**.
-Built as part of a Master’s-level project in **AI in Business**, this app demonstrates an
-end-to-end workflow from data engineering and model training in Databricks to an
+# Meta Ad Campaign Purchase Predictor
+A Streamlit web app that predicts the expected **number of purchases** for a
+Meta ad campaign using a linear regression model deployed on **Databricks MLflow**.
+This app demonstrates an end-to-end workflow from data engineering and model training in Databricks to an
 interactive prediction UI in Streamlit.
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-
 blue.svg)](https://www.python.org/downloads/)
