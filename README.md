@@ -49,15 +49,15 @@ inputs.
 - Calls a **Databricks Serving Endpoint** that hosts the trained model.
 - Uses a **Databricks personal access token** for secure authentication.
 - Payload is constructed to match the training feature schema (campaign-level features).
-## Project Structure
 campaign_purchase_app/
-■
-■■■ streamlit_app.py # Main Streamlit application (UI + prediction logic)
-■■■ requirements.txt # Python dependencies for the app
-■■■ README.md # Project documentation (this file)
-■
-■■■ .streamlit/
- ■■■ secrets.toml.example # Example configuration for Databricks token and endpoint
+│
+├── streamlit_app.py           # Main Streamlit application (UI + prediction logic)
+├── requirements.txt           # Python dependencies for the app
+├── README.md                  # Project documentation (this file)
+│
+└── .streamlit/
+    └── secrets.toml.example   # Example configuration for Databricks token and endpoint
+
 ### File Descriptions
 - **streamlit_app.py**
  Main entry point for the application.
