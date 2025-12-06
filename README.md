@@ -1,7 +1,31 @@
-# Ad-Level Purchase Prediction (B2C Ads) — End-to-End ML + App
-Forecast **purchases per ad** from planned campaign settings to drive **budget allocation,
-guardrails, and ROAS planning**. Trains on ad/campaign configuration and historical event
-logs; deploys a simple web app for what-if planning.
+# Campaign-Level Purchase Prediction — Simple README
+
+Forecast **purchases per campaign** from planned settings (budget, duration, platform/targeting mix) to support **budget allocation** and **ROAS planning**.
+
+---
+
+## What this project does
+- **Target:** `Purchases` at the **campaign level** (count).
+- **Best model:** `LINREG_kbest_20` — Linear Regression with top-20 features selected via K-Best.
+- **Inputs (planned-only):** `duration_days`, `total_budget`, platform/creative/targeting mix derived from joined campaign+ad config (no realized performance features).
+
+---
+
+## Data (single source of truth)
+Place raw CSVs in `data/raw/`:
+
+- `campaigns.csv` — campaign metadata  
+- `ads.csv` — ads linked to campaigns  
+- `ad_events.csv` — user events (`event_type` ∈ {Impression, Click, Purchase, ...})
+
+**Label construction (campaign level):**  
+Aggregate `ad_events.csv` → counts per `campaign_id` (pivot on `event_type`), then join to `campaigns.csv`.  
+Output: `data/processed/campaign_level_events_summary.csv` (includes `Purchase`).
+
+---
+
+## Minimal repo layout
+
 [![Python
 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Databricks/MLflow](https://img.shields.io/badge/MLflow-enabled-brightgreen)](https://mlflow.org/)
