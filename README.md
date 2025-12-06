@@ -195,7 +195,6 @@ The target variable is:
 Training is done in Databricks using scikit-learn and MLflow:
 - Multiple models are trained and logged:
  - Linear Regression + SelectKBest (with different k values)
- - Ridge and Lasso Regression
  - Random Forest, Gradient Boosting, XGBoost
  - K-Nearest Neighbors Regression
  - Neural Networks (MLPRegressor) with different architectures and activation functions
@@ -204,7 +203,6 @@ The best-performing model chosen for deployment in this project is a Ridge Regre
 pipeline with:
 1. Median imputation and feature scaling
 2. SelectKBest with mutual information to select top features (e.g., k=20)
-3. Ridge Regression with tuned regularization alpha
 Performance on the held-out synthetic test set:
 - RMSE (root mean squared error): on the order of ~5–6 purchases
 - MAE (mean absolute error): on the order of ~4–5 purchases
